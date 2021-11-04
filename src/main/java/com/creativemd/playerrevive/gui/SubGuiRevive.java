@@ -62,27 +62,6 @@ public class SubGuiRevive extends SubGui {
 					}
 				});
 			
-			GuiTextfield chat = new GuiTextfield("chat", "", 0, 120, 160, 10);
-			chat.maxLength = 256;
-			controls.add(chat.setStyle(Style.liteStyle));
-			
-			controls.add(new GuiButton(I18n.translateToLocal("playerrevive.gui.button.send"), 170, 120, 23, 10) {
-				
-				@Override
-				public void onClicked(int x, int y, int button) {
-					GuiTextfield chat = (GuiTextfield) SubGuiRevive.this.get("chat");
-					
-					if (!chat.text.isEmpty() && (!chat.text.startsWith("/") || PlayerRevive.CONFIG.allowCommandsWhileBleeding)) {
-						gui.sendChat(chat.text);
-						
-						chat.setSelectionPos(0);
-						chat.selEnd = 0;
-						chat.cursorPosition = 0;
-						chat.text = "";
-					}
-				}
-			}.setStyle(Style.liteStyle));
-			
 			if (!PlayerRevive.CONFIG.disableMusic)
 				controls.add(new GuiAnalogeSlider("volume", 160, 0, 40, 10, PlayerRevive.CONFIG.volumeModifier, 0, 1).setStyle(Style.liteStyle));
 		}
@@ -103,25 +82,7 @@ public class SubGuiRevive extends SubGui {
 			}
 		}
 	}
-	
-	@Override
-	public boolean onKeyPressed(char character, int key) {
-		if (!((SubContainerRevive) container).isHelping && key == org.lwjgl.input.Keyboard.KEY_RETURN) {
-			GuiTextfield chat = (GuiTextfield) SubGuiRevive.this.get("chat");
-			
-			if (!chat.text.isEmpty() && (!chat.text.startsWith("/") || PlayerRevive.CONFIG.allowCommandsWhileBleeding)) {
-				gui.sendChat(chat.text);
-				
-				chat.setSelectionPos(0);
-				chat.selEnd = 0;
-				chat.cursorPosition = 0;
-				chat.text = "";
-			}
-			return true;
-		}
-		return super.onKeyPressed(character, key);
-	}
-	
+
 	public String formatTime(int timeLeft) {
 		int lengthOfMinute = 20 * 60;
 		int lengthOfHour = lengthOfMinute * 60;

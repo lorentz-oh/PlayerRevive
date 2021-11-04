@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url 'https://repo.sk1er.club/repository/maven-public' }
         jcenter()
         mavenCentral()
     }
@@ -17,7 +16,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0'
 group = 'com.creativemd.playerrevive' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'playerrevive'
+archivesBaseName = 'playerreviveatl'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -55,6 +54,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
         }
     }*/
+}
+
+repositories{
+    maven { url 'https://repo.sk1er.club/repository/maven-public' }
 }
 
 dependencies {

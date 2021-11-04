@@ -113,7 +113,7 @@ public class ReviveEventServer {
 	
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void playerInteract(PlayerInteractEvent.EntityInteract event) {
-		if (!PlayerReviveServer.isPlayerBleeding(event.getEntityPlayer()) && event.getTarget() instanceof EntityPlayer && !event.getEntityLiving().world.isRemote) {
+		/*if (!PlayerReviveServer.isPlayerBleeding(event.getEntityPlayer()) && event.getTarget() instanceof EntityPlayer && !event.getEntityLiving().world.isRemote) {
 			EntityPlayer player = (EntityPlayer) event.getTarget();
 			IRevival revive = PlayerReviveServer.getRevival(player);
 			if (!revive.isHealty()) {
@@ -123,7 +123,7 @@ public class ReviveEventServer {
 				GuiHandler.openGui("plreviver", nbt, event.getEntityPlayer());
 				event.setCanceled(true);
 			}
-		}
+		}*/
 	}
 	
 	@SubscribeEvent

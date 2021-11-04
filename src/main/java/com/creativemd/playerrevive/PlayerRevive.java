@@ -51,7 +51,7 @@ public class PlayerRevive {
 	public static SoundEvent deathSound = new SoundEvent(new ResourceLocation(PlayerRevive.modid, "death")).setRegistryName(new ResourceLocation(PlayerRevive.modid, "death"));
 	public static SoundEvent revivedSound = new SoundEvent(new ResourceLocation(PlayerRevive.modid, "revived")).setRegistryName(new ResourceLocation(PlayerRevive.modid, "revived"));
 	
-	public static final String modid = "playerrevive";
+	public static final String modid = "playerreviveatl";
 	public static final String version = "1.0";
 	
 	public static PlayerReviveConfig CONFIG;

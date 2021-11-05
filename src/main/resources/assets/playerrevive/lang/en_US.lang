@@ -14,3 +14,5 @@ playerrevive.gui.label.time_left=Time left %s
 #gui-popup
 playerrevive.gui.popup.give_up=Do you really want to give up?
 playerrevive.gui.popup.disconnect=Do you really want to disconnect?
+playerrevive.gui.button.call_ambulance=call ambulance
+playerrevive.gui.popup.call_ambulance=Call ambulance?

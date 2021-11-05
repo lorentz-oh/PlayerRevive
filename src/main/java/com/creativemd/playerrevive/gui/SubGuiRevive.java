@@ -61,7 +61,13 @@ public class SubGuiRevive extends SubGui {
 						openYesNoDialog(I18n.translateToLocal("playerrevive.gui.popup.disconnect"));
 					}
 				});
-			
+			controls.add(new GuiButton(I18n.translateToLocal("playerrevive.gui.button.call_ambulance"), 70, 120) {
+
+				@Override
+				public void onClicked(int x, int y, int button) {
+					openYesNoDialog(I18n.translateToLocal("playerrevive.gui.popup.call_ambulance"));
+				}
+			});
 			if (!PlayerRevive.CONFIG.disableMusic)
 				controls.add(new GuiAnalogeSlider("volume", 160, 0, 40, 10, PlayerRevive.CONFIG.volumeModifier, 0, 1).setStyle(Style.liteStyle));
 		}
@@ -74,6 +80,8 @@ public class SubGuiRevive extends SubGui {
 				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setBoolean("giveup", true);
 				sendPacketToServer(nbt);
+			} else if(text.equals(I18n.translateToLocal("playerrevive.gui.popup.call_ambulance"))){
+				gui.sendChat("На помощь!");
 			} else {
 				Minecraft mc = Minecraft.getMinecraft();
 				mc.world.sendQuittingDisconnectingPacket();

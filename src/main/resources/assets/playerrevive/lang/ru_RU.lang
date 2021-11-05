@@ -1,0 +1,18 @@
+#chat message
+playerrevive.chat.bleeding=%s истекает кровью...
+death.attack.bledToDeath.player=%s не дождался помощи
+
+#gui-button
+playerrevive.gui.button.give_up=сдаться смерти
+playerrevive.gui.button.disconnect=выйти с сервера
+playerrevive.gui.button.send=отправить
+
+#gui=labels
+playerrevive.gui.label.time_left=Осталось %s
+
+
+#gui-popup
+playerrevive.gui.popup.give_up=Вы действительно хотите сдаться?
+playerrevive.gui.popup.disconnect=Вы действительно хотите отключиться?
+playerrevive.gui.button.call_ambulance=вызвать скорую
+playerrevive.gui.popup.call_ambulance=Вызвать скорую?

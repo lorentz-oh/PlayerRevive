@@ -16,6 +16,7 @@ import com.creativemd.playerrevive.client.ReviveEventClient;
 import com.n247s.api.eventapi.eventsystem.CustomEventSubscribe;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,9 +25,10 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class SubGuiRevive extends SubGui {
-	
+	private static final int width = 200;
+
 	public SubGuiRevive() {
-		super(200, 140);
+		super(width, 140);
 		setStyle(Style.emptyStyle);
 	}
 	
@@ -42,26 +44,28 @@ public class SubGuiRevive extends SubGui {
 		controls.add(label);
 		if (!((SubContainerRevive) container).isHelping) {
 			
-			if (!PlayerRevive.CONFIG.disableGiveUp)
-				controls.add(new GuiButton(I18n.translateToLocal("playerrevive.gui.button.give_up"), 80, 80) {
+			if (!PlayerRevive.CONFIG.disableGiveUp){
+				String text = I18n.translateToLocal("playerrevive.gui.button.give_up");
+				controls.add(new GuiButton(text, width/2-Minecraft.getMinecraft().fontRenderer.getStringWidth(text)/2, 80) {
 					
 					@Override
 					public void onClicked(int x, int y, int button) {
-						
 						openYesNoDialog(I18n.translateToLocal("playerrevive.gui.popup.give_up"));
 					}
-				});
+				});}
 			
-			if (!PlayerRevive.CONFIG.disableDisconnect)
-				controls.add(new GuiButton(I18n.translateToLocal("playerrevive.gui.button.disconnect"), 70, 100) {
+			if (!PlayerRevive.CONFIG.disableDisconnect){
+				String text = I18n.translateToLocal("playerrevive.gui.button.disconnect");
+				controls.add(new GuiButton(text, width/2-Minecraft.getMinecraft().fontRenderer.getStringWidth(text)/2, 100) {
 					
 					@Override
 					public void onClicked(int x, int y, int button) {
 						
 						openYesNoDialog(I18n.translateToLocal("playerrevive.gui.popup.disconnect"));
 					}
-				});
-			controls.add(new GuiButton(I18n.translateToLocal("playerrevive.gui.button.call_ambulance"), 70, 120) {
+				});}
+			String ambulanceText = I18n.translateToLocal("playerrevive.gui.button.call_ambulance");
+			controls.add(new GuiButton(ambulanceText, width/2-Minecraft.getMinecraft().fontRenderer.getStringWidth(ambulanceText)/2, 120) {
 
 				@Override
 				public void onClicked(int x, int y, int button) {
@@ -75,13 +79,13 @@ public class SubGuiRevive extends SubGui {
 	
 	@Override
 	public void onDialogClosed(String text, String[] buttons, String clicked) {
-		if (clicked.equals("Yes")) {
+		if (clicked.equals(I18n.translateToLocal("gui.yes"))) {
 			if (text.equals(I18n.translateToLocal("playerrevive.gui.popup.give_up"))) {
 				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setBoolean("giveup", true);
 				sendPacketToServer(nbt);
 			} else if(text.equals(I18n.translateToLocal("playerrevive.gui.popup.call_ambulance"))){
-				gui.sendChat("На помощь!");
+				gui.sendChat("/medic");
 			} else {
 				Minecraft mc = Minecraft.getMinecraft();
 				mc.world.sendQuittingDisconnectingPacket();
